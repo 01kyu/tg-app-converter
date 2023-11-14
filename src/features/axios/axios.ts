@@ -1,12 +1,13 @@
 import axios from 'axios';
+import { API_COINS, API_NAME, API_VERSION } from "../constants";
 
 export const httpBaseClient = axios.create({
-    baseURL: process.env.API,
+    baseURL: `${API_NAME}`,
     headers: {
         'Content-Type': 'application/json'
     }
 })
 
 export const httpCoinsInstance = axios.create({
-    baseURL: `https://api.coinranking.com/v2/coins/`
+    baseURL: `${API_NAME}${API_VERSION}${API_COINS}`
 })

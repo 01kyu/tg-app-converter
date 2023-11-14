@@ -1,14 +1,20 @@
+//region libs imports
 import React from 'react';
+//endregion
+
+//region utils, other important imports
+import { MainLayout } from "./shared";
+
+//endregion
+
+//region style imports
 import './App.css';
-import { observer } from "mobx-react-lite";
-import { useStores } from "./features";
+//endregion
 
-export const App = observer(() => {
-  const { coins: { getCoinList } } = useStores();
-  console.log(getCoinList());
+export const App = () => {
   return (
-
     <div className="converter">
+      <MainLayout />
     </div>
   );
-});
+};

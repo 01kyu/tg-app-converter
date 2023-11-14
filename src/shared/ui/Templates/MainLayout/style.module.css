@@ -1,0 +1,14 @@
+.mainLayout {
+    width: 70vw;
+    height: 30vh;
+
+    margin: 0 auto;
+    padding: 0 0.5rem;
+}
+
+.mainLayout__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
