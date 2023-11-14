@@ -3,7 +3,7 @@
 ## Here is web app which gives an opportunity to convert coins
 
 ## Backlog:
-- Select for changing coins;
+- Pagination for changing coins;
 - Get coins price, update coins price;
 - Implementation of converter;
 

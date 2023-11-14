@@ -2,14 +2,13 @@ import { action, flow, makeAutoObservable, observable } from "mobx";
 import { CoinApi, ICoin } from "../../entities";
 import { RootStore } from "./RootStore";
 
-interface ICoinOption {
+/*interface ICoinOption {
     value: string;
     label: string;
-}
+}*/
 
 export class CoinStore {
     @observable coinList: ICoin[] | null = null;
-    @observable coinOptions: ICoinOption[] | never[] = [];
     @observable isLoading: boolean = false;
     @observable error: string | null | unknown = null;
 
@@ -25,10 +24,9 @@ export class CoinStore {
 
     @action
     updateCoins(updatedArray: ICoin[]) {
-        this.coinList = null;
         if (updatedArray) {
             this.coinList = updatedArray;
-            updatedArray.map((element) => {
+            /*updatedArray.map((element) => {
                 const curLabel = element.name;
                 const curValue = element.price;
 
@@ -42,16 +40,11 @@ export class CoinStore {
                 const unique = new Set(this.coinOptions);
                 // @ts-ignore
                 this.coinOptions = [...unique];
-            })
+            })*/
         }
     }
 
-    /*@action
-    getCoinOptions(coinList: ICoinList[]) {
-        if (coinList) {
-        }
-    }*/
-
+    //todo pagination (limit as const, page as argument)
     @flow
     *getCoinList(/*limit: number, page: number*/) {
         this.isLoading = true;

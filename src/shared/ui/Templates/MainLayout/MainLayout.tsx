@@ -1,44 +1,69 @@
 //region import libs
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { observer } from "mobx-react-lite";
 //endregion
 
 //region components, utils imports
-import { Input, Select } from "../../Molecules";
+/*import { Input, Select } from "../../Molecules";
 
-import { useInput } from "../../../hooks";
+import { useInput } from "../../../hooks";*/
 import { updateInterval, useStores } from "../../../../features";
+import { ICoin } from "../../../../entities";
+
+import { toJS } from "mobx";
 import classNames from "classnames";
 //endregion
 
 import styles from './style.module.css';
 
 interface IMainLayoutProps {
-  //children: React.ReactNode;
   className?: string;
 }
 
 export const MainLayout: FC<IMainLayoutProps> = observer(({ className }) => {
-	const usdInput = useInput('');
-	//const [selectOptions, setSelectOptions] = useState<never[] | [{value: string, label: string}]>([]);
-	const { coins: { coinList, getCoins, coinOptions } } = useStores();
-	const timer = setInterval(() => {
-		getCoins();
-	}, updateInterval);
+	const { coins: { coinList, getCoins } } = useStores();
+	const [coins, setCoins] = useState<ICoin[] | null>(null);
 
 	useEffect(() => {
+		getCoins();
+	}, [])
+
+	useEffect(() => {
+		const timer = setInterval(() => {
+			getCoins();
+		}, updateInterval);
+
+
 		return () => {
 			clearInterval(timer);
 		}
+	}, [])
+
+	useEffect(() => {
+		const currentCoins = coinList ? toJS(coinList) : null;
+		setCoins(currentCoins);
+
 	}, [coinList])
 
-	console.log(coinOptions);
+	/*
+	todo ?useManyInputs hook for resolving coin exchanges, pagination component, implement pagination
+	  todo create some resulting component
+	*/
 
 	return (
 		<div className={classNames(className, styles.mainLayout)}>
 			<div>
-				<Input value={usdInput.value} setValue={usdInput.handleInputChange} />
-				<Select options={[{value: 'option1', label: 'this some option'}, {value: 'this someoption2', label: 'yessss'}]} />
+				{coins ? coins.map((coin) => (
+					<div>
+						<img src={coin.iconUrl} alt={coin.name} />
+						<input />
+						<label> `here would be your exchange value` </label>
+						<label> 1usd = {coin.price}</label>
+					</div>
+					))
+					:
+					<></>
+				}
 			</div>
 		</div>
 	);
