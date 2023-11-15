@@ -21,11 +21,16 @@ interface IMainLayoutProps {
   className?: string;
 }
 
+//some fixes here?
+//@ts-ignore
+const tgRef = window.Telegram.WebApp;
+
 export const MainLayout: FC<IMainLayoutProps> = observer(({ className }) => {
 	const { coins: { coinList, getCoins } } = useStores();
 	const [coins, setCoins] = useState<ICoin[] | null>(null);
 
 	useEffect(() => {
+		tgRef.ready();
 		getCoins();
 	}, [])
 
@@ -46,10 +51,15 @@ export const MainLayout: FC<IMainLayoutProps> = observer(({ className }) => {
 
 	}, [coinList])
 
+	const onClose = () => {
+		tgRef.close();
+	}
+
 	return (
 		<div className={classNames(className, styles.mainLayout)}>
-			<div>
+			<div className={styles.mainLayout__header}>
 				<h1>Конвертер валют</h1>
+				<button className={styles.mainLayout__headerBtn} onClick={onClose}>X</button>
 			</div>
 			<div className={styles.mainLayout__body}>
 				{coins && coins.map((coin) => (
