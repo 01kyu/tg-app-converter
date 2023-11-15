@@ -7,6 +7,7 @@ import { observer } from "mobx-react-lite";
 /*import { Input, Select } from "../../Molecules";
 
 import { useInput } from "../../../hooks";*/
+import { ExchangeLabel } from "../../Organisms";
 import { updateInterval, useStores } from "../../../../features";
 import { ICoin } from "../../../../entities";
 
@@ -45,24 +46,15 @@ export const MainLayout: FC<IMainLayoutProps> = observer(({ className }) => {
 
 	}, [coinList])
 
-	/*
-	todo ?useManyInputs hook for resolving coin exchanges, pagination component, implement pagination
-	  todo create some resulting component
-	*/
-
 	return (
 		<div className={classNames(className, styles.mainLayout)}>
 			<div>
-				{coins ? coins.map((coin) => (
-					<div>
-						<img src={coin.iconUrl} alt={coin.name} />
-						<input />
-						<label> `here would be your exchange value` </label>
-						<label> 1usd = {coin.price}</label>
-					</div>
+				<h1>Конвертер валют</h1>
+			</div>
+			<div className={styles.mainLayout__body}>
+				{coins && coins.map((coin) => (
+					<ExchangeLabel coin={coin} key={coin.uuid} />
 					))
-					:
-					<></>
 				}
 			</div>
 		</div>

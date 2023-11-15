@@ -1,0 +1,8 @@
+.label {
+    padding: 0.5rem 1rem;
+    background: teal;
+    border: 0.0625rem solid;
+
+    min-width: 15rem;
+    overflow: hidden;
+}

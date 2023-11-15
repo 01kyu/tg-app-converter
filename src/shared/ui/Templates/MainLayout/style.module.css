@@ -1,18 +1,25 @@
 .mainLayout {
     width: 70vw;
-    height: 30vh;
 
     margin: 0 auto;
     padding: 0 0.5rem;
 }
 
-.mainLayout__wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
+@media screen and (max-width: 500px) {
+    .mainLayout {
+        width: 95vw;
+    }
 }
 
-.mainLayout img {
-    width: 1.5rem;
+.mainLayout__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    margin: 1rem 0;
+}
+
+.mainLayout__header {
+    display: flex;
+    justify-content: flex-start;
 }

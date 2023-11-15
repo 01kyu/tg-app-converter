@@ -1,0 +1,12 @@
+.exchangeLabel {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.exchangeLabel__input {
+    width: 40%;
+}
