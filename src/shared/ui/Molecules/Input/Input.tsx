@@ -13,13 +13,15 @@ interface IInputProps {
 	className?: string;
 	value: string;
 	setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	type?: React.HTMLInputTypeAttribute;
 }
 
 export const Input: FC<IInputProps> = ({
 	placeholder,
 	className,
 	value,
-	setValue
+	setValue,
+	type
 }) => {
 	return (
 		<input
@@ -27,6 +29,7 @@ export const Input: FC<IInputProps> = ({
 			className={classNames(className, styles.input)}
 			value={value}
 			onChange={setValue}
+			type={type}
 		/>
 	);
 };

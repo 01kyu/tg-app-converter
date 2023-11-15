@@ -16,6 +16,7 @@ import classNames from "classnames";
 //endregion
 
 import styles from './style.module.css';
+import {useInput} from "../../../hooks";
 
 interface IMainLayoutProps {
   className?: string;
@@ -24,6 +25,7 @@ interface IMainLayoutProps {
 export const MainLayout: FC<IMainLayoutProps> = observer(({ className }) => {
 	const { coins: { coinList, getCoins } } = useStores();
 	const [coins, setCoins] = useState<ICoin[] | null>(null);
+	const usd = useInput('');
 
 	useEffect(() => {
 		getCoins();
@@ -53,7 +55,7 @@ export const MainLayout: FC<IMainLayoutProps> = observer(({ className }) => {
 			</div>
 			<div className={styles.mainLayout__body}>
 				{coins && coins.map((coin) => (
-					<ExchangeLabel coin={coin} key={coin.uuid} />
+					<ExchangeLabel inputValue={usd.value} setInputValue={usd.handleInputChange} coin={coin} key={coin.uuid} />
 					))
 				}
 			</div>
