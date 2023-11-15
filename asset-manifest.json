@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/tg-app-converter/static/css/main.b3f0f5f7.css",
+    "main.js": "/tg-app-converter/static/js/main.eff660df.js",
+    "index.html": "/tg-app-converter/index.html",
+    "main.b3f0f5f7.css.map": "/tg-app-converter/static/css/main.b3f0f5f7.css.map",
+    "main.eff660df.js.map": "/tg-app-converter/static/js/main.eff660df.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b3f0f5f7.css",
+    "static/js/main.eff660df.js"
+  ]
+}
