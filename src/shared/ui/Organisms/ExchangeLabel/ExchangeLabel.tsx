@@ -1,12 +1,10 @@
 //region import libs
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 //endregion
 
 //region components, utils imports
-import {Image, Label} from "../../Atoms";
+import { Image, Label } from "../../Atoms";
 import { Input } from "../../Molecules";
-
-import { useInput } from "../../../hooks";
 
 import { ICoin } from "../../../../entities";
 //endregion
@@ -15,18 +13,19 @@ import styles from './style.module.css';
 
 interface IExchangeLabelProps {
     coin: ICoin;
+    inputValue: string;
+    setInputValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const ExchangeLabel: FC<IExchangeLabelProps> = ({ coin }) => {
+export const ExchangeLabel: FC<IExchangeLabelProps> = ({ coin, inputValue, setInputValue }) => {
     const [result, setResult] = useState<number>(0);
-    const exchangeInput = useInput('');
     const exchangeConst = +coin.price;
 
     useEffect(() => {
-        if (exchangeInput.value) {
-            setResult(+exchangeInput.value*exchangeConst);
+        if (inputValue) {
+            setResult(+inputValue*exchangeConst);
         }
-    }, [exchangeInput.value, coin.price])
+    }, [inputValue, coin.price])
 
     return (
         <div className={styles.exchangeLabel}>
@@ -35,9 +34,10 @@ export const ExchangeLabel: FC<IExchangeLabelProps> = ({ coin }) => {
                 alt={coin.name}
             />
             <Input
-                value={exchangeInput.value}
-                setValue={exchangeInput.handleInputChange}
+                value={inputValue}
+                setValue={setInputValue}
                 placeholder={'Введите usd'}
+                type={'number'}
             />
             <Label >{result}</Label>
         </div>

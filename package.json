@@ -1,6 +1,7 @@
 {
   "name": "devs",
   "version": "0.1.0",
+  "homepage": "https://01kyu.github.io/tg-app-converter/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -12,6 +13,7 @@
     "@types/react-dom": "^18.2.15",
     "axios": "^1.6.1",
     "classnames": "^2.3.2",
+    "gh-pages": "^6.0.0",
     "mobx": "^6.11.0",
     "mobx-react": "^9.1.0",
     "mobx-react-lite": "^4.0.5",
@@ -26,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
