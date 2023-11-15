@@ -23,7 +23,7 @@ export const ExchangeLabel: FC<IExchangeLabelProps> = ({ coin, inputValue, setIn
 
     useEffect(() => {
         if (inputValue) {
-            setResult(+inputValue*exchangeConst);
+            setResult(+inputValue/exchangeConst);
         }
     }, [inputValue, coin.price])
 
