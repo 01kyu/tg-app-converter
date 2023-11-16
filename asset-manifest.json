@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tg-app-converter/static/css/main.b3f0f5f7.css",
-    "main.js": "/tg-app-converter/static/js/main.44768e02.js",
+    "main.css": "/tg-app-converter/static/css/main.5bf7b600.css",
+    "main.js": "/tg-app-converter/static/js/main.b00bc04f.js",
     "index.html": "/tg-app-converter/index.html",
-    "main.b3f0f5f7.css.map": "/tg-app-converter/static/css/main.b3f0f5f7.css.map",
-    "main.44768e02.js.map": "/tg-app-converter/static/js/main.44768e02.js.map"
+    "main.5bf7b600.css.map": "/tg-app-converter/static/css/main.5bf7b600.css.map",
+    "main.b00bc04f.js.map": "/tg-app-converter/static/js/main.b00bc04f.js.map"
   },
   "entrypoints": [
-    "static/css/main.b3f0f5f7.css",
-    "static/js/main.44768e02.js"
+    "static/css/main.5bf7b600.css",
+    "static/js/main.b00bc04f.js"
   ]
 }
