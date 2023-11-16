@@ -1,5 +1,5 @@
 //region import libs
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 //endregion
 
 //region components, utils imports
@@ -7,25 +7,42 @@ import { Image, Label } from "../../Atoms";
 import { Input } from "../../Molecules";
 
 import { ICoin } from "../../../../entities";
+import { useInput } from "../../../hooks";
+
+import { useStores } from "../../../../features";
+import { observer } from "mobx-react-lite";
 //endregion
 
 import styles from './style.module.css';
 
+
 interface IExchangeLabelProps {
     coin: ICoin;
-    inputValue: string;
-    setInputValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const ExchangeLabel: FC<IExchangeLabelProps> = ({ coin, inputValue, setInputValue }) => {
-    const [result, setResult] = useState<number>(0);
+export const ExchangeLabel: FC<IExchangeLabelProps> = observer(({ coin }) => {
+    const { coins : { setActivePrice, setActiveCurrency, currentUsdPrice, activeCurrency }} = useStores();
+    const incomingInput = useInput(currentUsdPrice);
     const exchangeConst = +coin.price;
 
     useEffect(() => {
-        if (inputValue) {
-            setResult(+inputValue/exchangeConst);
+        if (incomingInput.value && incomingInput.value !== '0') {
+            setActivePrice(+incomingInput.value*exchangeConst);
         }
-    }, [inputValue, coin.price])
+    }, [incomingInput.value, coin.price])
+
+    useEffect(() => {
+        if (activeCurrency && activeCurrency !== coin.name) {
+            incomingInput.setValue((+currentUsdPrice/+coin.price).toString())
+            console.log(currentUsdPrice, coin.price)
+        }
+    }, [activeCurrency, currentUsdPrice])
+
+    const handleInputChange = () => {
+        setActiveCurrency(coin.name);
+        incomingInput.setValue('');
+    }
+
 
     return (
         <div className={styles.exchangeLabel}>
@@ -34,12 +51,14 @@ export const ExchangeLabel: FC<IExchangeLabelProps> = ({ coin, inputValue, setIn
                 alt={coin.name}
             />
             <Input
-                value={inputValue}
-                setValue={setInputValue}
+                onfocus={handleInputChange}
+                value={incomingInput.value}
+                setValue={incomingInput.handleInputChange}
                 placeholder={'Введите usd'}
                 type={'number'}
             />
-            <Label >{result}</Label>
+            {activeCurrency && <span>(in {activeCurrency})</span>}
+            <Label>${currentUsdPrice}</Label>
         </div>
     )
-}
+});

@@ -10,3 +10,7 @@
 .exchangeLabel__input {
     width: 40%;
 }
+
+.exchangeLabel span {
+    white-space: nowrap;
+}

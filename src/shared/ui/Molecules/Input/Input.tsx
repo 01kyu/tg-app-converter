@@ -8,12 +8,8 @@ import React, { FC } from 'react';
 import styles from './style.module.css';
 import classNames from "classnames";
 
-interface IInputProps {
-	placeholder?: string;
-	className?: string;
-	value: string;
+interface IInputProps extends Partial<HTMLInputElement> {
 	setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	type?: React.HTMLInputTypeAttribute;
 }
 
 export const Input: FC<IInputProps> = ({
@@ -21,7 +17,8 @@ export const Input: FC<IInputProps> = ({
 	className,
 	value,
 	setValue,
-	type
+	type,
+	onfocus
 }) => {
 	return (
 		<input
@@ -30,6 +27,8 @@ export const Input: FC<IInputProps> = ({
 			value={value}
 			onChange={setValue}
 			type={type}
+			//@ts-ignore
+			onFocus={onfocus}
 		/>
 	);
 };

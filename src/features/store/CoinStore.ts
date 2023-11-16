@@ -9,6 +9,8 @@ import { RootStore } from "./RootStore";
 
 export class CoinStore {
     @observable coinList: ICoin[] | null = null;
+    @observable activeCurrency: string | null = null; //fix
+    @observable currentUsdPrice: string  = '0';
     @observable isLoading: boolean = false;
     @observable error: string | null | unknown = null;
 
@@ -20,6 +22,16 @@ export class CoinStore {
     @action
     getCoins() {
         this.getCoinList();
+    }
+
+    @action
+    setActivePrice(price: number) {
+        this.currentUsdPrice = price.toString();
+    }
+
+    @action
+    setActiveCurrency(currency: string) {
+        this.activeCurrency = currency;
     }
 
     @action
