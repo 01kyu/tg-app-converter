@@ -54,7 +54,7 @@ export const ExchangeLabel: FC<IExchangeLabelProps> = observer(({ coin }) => {
                 onfocus={handleInputChange}
                 value={incomingInput.value}
                 setValue={incomingInput.handleInputChange}
-                placeholder={'Введите usd'}
+                placeholder={'Введите число'}
                 type={'number'}
             />
             {activeCurrency && <span>(in {activeCurrency})</span>}
